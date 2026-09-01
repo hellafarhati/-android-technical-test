@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ds_retry">Retry</string>
+    <string name="ds_favorite_action">Add to favorites</string>
+    <string name="ds_favorite_state_on">In favorites</string>
+    <string name="ds_favorite_state_off">Not in favorites</string>
+    <string name="ds_back">Back</string>
+</resources>
