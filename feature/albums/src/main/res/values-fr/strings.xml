@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="albums_title">Albums</string>
+    <string name="albums_refresh">Actualiser</string>
+    <string name="albums_search_hint">Rechercher un titre</string>
+    <string name="albums_filter_all">Tous</string>
+    <string name="albums_filter_favorites">Favoris</string>
+    <string name="albums_group_header">Album %1$d — %2$d photos</string>
+    <string name="albums_empty">Aucun album disponible pour le moment</string>
+    <string name="albums_empty_search">Aucun titre ne correspond à votre recherche</string>
+    <string name="albums_empty_favorites">Vous n\'avez pas encore de favori</string>
+
+    <string name="error_network">Pas de connexion. Vérifiez votre réseau puis réessayez.</string>
+    <string name="error_server">Le serveur est indisponible. Réessayez plus tard.</string>
+    <string name="error_parsing">Données inattendues reçues du serveur.</string>
+    <string name="error_empty">Le serveur n\'a renvoyé aucune donnée.</string>
+    <string name="error_unknown">Une erreur est survenue.</string>
+</resources>

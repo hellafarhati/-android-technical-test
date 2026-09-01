@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="albums_title">Albums</string>
+    <string name="albums_refresh">Refresh</string>
+    <string name="albums_search_hint">Search a title</string>
+    <string name="albums_filter_all">All</string>
+    <string name="albums_filter_favorites">Favorites</string>
+    <string name="albums_group_header">Album %1$d — %2$d photos</string>
+    <string name="albums_empty">No album available yet</string>
+    <string name="albums_empty_search">No title matches your search</string>
+    <string name="albums_empty_favorites">You have not added any favorite yet</string>
+
+    <string name="error_network">No connection. Check your network and try again.</string>
+    <string name="error_server">The server is unavailable. Please try again later.</string>
+    <string name="error_parsing">Unexpected data received.</string>
+    <string name="error_empty">No data returned by the server.</string>
+    <string name="error_unknown">Something went wrong.</string>
+</resources>
