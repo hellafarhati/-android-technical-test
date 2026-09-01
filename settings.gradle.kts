@@ -20,5 +20,13 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Android RecruitmentTest App"
+
 include(":app")
+
+// Couches transverses
+include(":core")
 include(":data")
+
+// Fonctionnalites
+include(":feature:albums")
+include(":feature:albumdetails")
