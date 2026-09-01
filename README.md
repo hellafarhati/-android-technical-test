@@ -1,28 +1,4 @@
-# Albums — test technique Android leboncoin
-
-Application Android affichant les ~5 000 photos de
-`https://static.leboncoin.fr/img/shared/technical-test.json`, regroupées par album,
-avec recherche, favoris persistés, écran de détail et fonctionnement hors ligne.
-
-## Sommaire de la documentation
-
-| Document | Contenu |
-| --- | --- |
-| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Découpage en modules, couches, flux de données, justification de chaque librairie |
-| [`docs/BUGS-ET-CORRECTIFS.md`](docs/BUGS-ET-CORRECTIFS.md) | Les 20 problèmes trouvés dans le projet initial, avant / après |
-| [`docs/TESTS.md`](docs/TESTS.md) | Stratégie de test, ce qui est couvert et ce qui ne l'est pas |
-| [`docs/EVOLUTIONS.md`](docs/EVOLUTIONS.md) | Planification des évolutions (bonus de l'énoncé) |
-
-## Démarrer
-
-Prérequis : **JDK 17** et Android Studio récent (AGP 8.10, Gradle 8.11.1, Kotlin 2.2).
-
-```bash
-./gradlew assembleDebug      # construire l'APK de debug
-./gradlew installDebug       # installer sur un appareil connecté
-./gradlew test               # tous les tests unitaires
-./gradlew lint               # analyse statique
-```
+# Soumission du test technique
 
 ## Fonctionnalités
 
