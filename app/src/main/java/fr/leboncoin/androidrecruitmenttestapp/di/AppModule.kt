@@ -12,10 +12,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object AppModule {
 
-    /**
-     * Seul le module applicatif connait le type de build reel : `BuildConfig.DEBUG` d'une
-     * bibliotheque ne refleterait pas celui de l'application.
-     */
+
     @Provides
     @Singleton
     fun provideNetworkConfig(): NetworkConfig = NetworkConfig(

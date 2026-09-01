@@ -11,7 +11,7 @@ import org.junit.runner.Description
 
 /**
  * Remplace `Dispatchers.Main` par un dispatcher de test.
- * Indispensable pour tester les ViewModels (viewModelScope utilise Dispatchers.Main.immediate).
+ * Indispensable pour tester les ViewModels (viewModelScope utilise Dispatchers.Main.immediate)
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainDispatcherRule(

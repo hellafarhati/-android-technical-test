@@ -5,10 +5,6 @@ import fr.leboncoin.data.database.entity.PopulatedAlbum
 import fr.leboncoin.core.model.Album
 import fr.leboncoin.data.network.model.AlbumDto
 
-/**
- * Les conversions sont centralisees ici : the network layer ignores Room, the database layer
- * ignore le JSON, et le domaine ignore les deux.
- */
 internal fun AlbumDto.toEntity(): AlbumEntity = AlbumEntity(
     id = id,
     albumId = albumId,

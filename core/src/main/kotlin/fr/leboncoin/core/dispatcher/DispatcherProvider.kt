@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 /**
- * Abstraction des dispatchers de coroutines.
+ * Abstraction des dispatchers des coroutines.
  *
  * On l'injecte plutot que d'appeler `Dispatchers.IO` directement : les tests peuvent alors
  * substituer un `TestDispatcher` et rester deterministes, sans `Thread.sleep` ni attente active.

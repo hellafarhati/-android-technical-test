@@ -14,10 +14,6 @@ import javax.inject.Inject
 
 /**
  * Point d'entree Hilt.
- *
- * Le chargeur d'images partage le meme [OkHttpClient] que Retrofit (un seul pool de connexions
- * et de threads) et dispose d'un cache disque : les vignettes deja vues restent visibles
- * hors ligne.
  */
 @HiltAndroidApp
 class LbcApplication : Application(), SingletonImageLoader.Factory {

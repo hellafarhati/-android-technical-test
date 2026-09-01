@@ -3,10 +3,9 @@ package fr.leboncoin.data.network.model
 import kotlinx.serialization.Serializable
 
 /**
- * Representation brute de la reponse HTTP.
- *
- * Toutes les chaines ont une valeur par defaut : combinee a `coerceInputValues`, une entree
- * incomplete ou avec un champ `null` ne fait plus echouer le parsing des 5 000 elements.
+ * Representation de la reponse HTTP.
+ * on accorde une valeur par defaut a toutes les chaines , sinon, une entree
+  incomplete ou avec un champ `null` ne fait plus echouer le parsing des 5 000 elements.
  */
 @Serializable
 data class AlbumDto(

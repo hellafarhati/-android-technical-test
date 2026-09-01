@@ -5,7 +5,7 @@ import fr.leboncoin.data.network.model.AlbumDto
 
 class FakeAlbumsRemoteDataSource : AlbumsRemoteDataSource {
 
-    /** Reponse renvoyee par [fetchAlbums] ; peut aussi jeter une exception. */
+    /** Reponse renvoyee par fetchAlbums() ; peut aussi renvoyer une exception */
     var result: Result<List<AlbumDto>> = Result.success(emptyList())
 
     var callCount: Int = 0

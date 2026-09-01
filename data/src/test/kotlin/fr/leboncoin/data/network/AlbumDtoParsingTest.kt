@@ -6,8 +6,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
- * Le contrat JSON est la principale source de regression cote reseau :
- * on verrouille le parsing (cles inconnues, valeurs nulles, champs manquants).
+ * La réponse JSON est une source de regression cote reseau donc on verrouille le parsing (cles inconnues, valeurs nulles, champs manquants)
  */
 class AlbumDtoParsingTest {
 

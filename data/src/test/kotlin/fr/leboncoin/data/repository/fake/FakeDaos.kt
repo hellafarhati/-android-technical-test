@@ -9,10 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
-/**
- * Base en memoire qui reproduit le comportement observable de Room :
- * jointure albums/favoris, tri, et re-emission a chaque ecriture.
- */
+
 class FakeAlbumsStore : AlbumsDao, FavoritesDao {
 
     private data class Snapshot(

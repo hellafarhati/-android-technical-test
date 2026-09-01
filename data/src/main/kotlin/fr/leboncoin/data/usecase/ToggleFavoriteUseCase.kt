@@ -3,7 +3,7 @@ package fr.leboncoin.data.usecase
 import fr.leboncoin.data.repository.AlbumsRepository
 import javax.inject.Inject
 
-/** Ajoute ou retire une photo des favoris ; la valeur est persistee immediatement. */
+/** Ajoute ou retire une photo des favoris */
 class ToggleFavoriteUseCase @Inject constructor(
     private val repository: AlbumsRepository,
 ) {

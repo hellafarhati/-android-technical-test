@@ -29,7 +29,7 @@ data class AlbumDetailsUiState(
     val isLoading: Boolean = true,
     val album: AlbumDetailUi? = null,
 ) {
-    /** L'element n'existe pas (ou plus) en base : cas reel apres un vidage du cache. */
+    /** L'element n'existe pas (ou plus) en base : for example after clearing cache */
     val isNotFound: Boolean get() = !isLoading && album == null
 }
 
@@ -74,7 +74,7 @@ private fun Album.toUi(): AlbumDetailUi = AlbumDetailUi(
     id = id,
     albumId = albumId,
     title = title,
-    // On affiche l'image pleine resolution ; la vignette a deja ete mise en cache par la liste.
+    // On affiche l'image pleine resolution si disponible, sinon lee thumbnail.
     imageUrl = imageUrl.ifBlank { thumbnailUrl },
     isFavorite = isFavorite,
 )

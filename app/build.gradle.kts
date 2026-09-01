@@ -84,6 +84,5 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    // Detecte les fuites (l'ancien AnalyticsHelper conservait une Activity) uniquement en debug.
-    debugImplementation(libs.leakcanary.android)
+     debugImplementation(libs.leakcanary.android)
 }

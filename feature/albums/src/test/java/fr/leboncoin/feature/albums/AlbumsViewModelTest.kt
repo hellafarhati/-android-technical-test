@@ -42,8 +42,7 @@ class AlbumsViewModelTest {
         savedStateHandle = savedStateHandle,
     )
 
-    /** `stateIn(WhileSubscribed)` n'emet que s'il y a un collecteur : on en branche un. */
-    private fun TestScope.observe(viewModel: AlbumsViewModel): Job =
+     private fun TestScope.observe(viewModel: AlbumsViewModel): Job =
         backgroundScope.launch { viewModel.uiState.collect() }
 
     @Test
@@ -145,7 +144,7 @@ class AlbumsViewModelTest {
             viewModel.onQueryChange("officia")
             advanceUntilIdle()
 
-            // L'ecran est detruit puis recree : le ViewModel, lui, survit.
+            // L'ecran est detruit puis recree : le ViewModel, survit.
             subscription.cancel()
             advanceTimeBy(1_000)
             val newSubscription = launch { viewModel.uiState.collect() }

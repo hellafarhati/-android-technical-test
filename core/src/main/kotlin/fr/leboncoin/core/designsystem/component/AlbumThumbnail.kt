@@ -10,8 +10,7 @@ import coil3.compose.AsyncImage
 import fr.leboncoin.core.R
 
 /**
- * Vignette resiliente : le jeu de donnees de test contient des URLs d'images qui peuvent
- * etre injoignables. On affiche alors un visuel de remplacement au lieu d'un trou blanc.
+ * Au cas où les images ne pourraient pas être chargées, j'ai utilisé des thumbnails pour l'affichage.
  */
 @Composable
 fun AlbumThumbnail(

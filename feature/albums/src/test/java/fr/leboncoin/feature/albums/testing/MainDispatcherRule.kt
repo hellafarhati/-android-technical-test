@@ -9,10 +9,7 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
-/**
- * Remplace `Dispatchers.Main` par un dispatcher de test.
- * Indispensable pour tester les ViewModels (viewModelScope utilise Dispatchers.Main.immediate).
- */
+
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainDispatcherRule(
     val testDispatcher: TestDispatcher = UnconfinedTestDispatcher(),

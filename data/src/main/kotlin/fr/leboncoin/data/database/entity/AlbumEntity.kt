@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 
 /**
  * Cache local des photos : c'est la source de verite de l'application.
- * Le reseau ne fait qu'alimenter cette table.
+ * L'appel de l'api permet d'alimenter cette table.
  */
 @Entity(
     tableName = "albums",
@@ -31,9 +31,9 @@ data class AlbumEntity(
 /**
  * Table dediee aux favoris.
  *
- * Choix : une table separee plutot qu'une colonne `is_favorite` dans `albums`. La
- * synchronisation reseau ecrase les lignes `albums` ; isoler les favoris garantit qu'une
- * donnee saisie par l'utilisateur ne soit jamais perdue par un refresh.
+ * Choix : une table separee plutot qu'une colonne `is_favorite` dans `albums`.
+ * La synchronisation reseau ecrase les lignes `albums` =>
+ * isoler les favoris garantit qu'une donnee saisie par l'utilisateur ne soit jamais perdue par un refresh.
  */
 @Entity(tableName = "favorites")
 data class FavoriteEntity(

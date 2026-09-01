@@ -10,10 +10,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface AlbumsDao {
 
-    /**
-     * Le tri est fait par SQLite (index sur `album_id`) plutot qu'en Kotlin : sur 5 000
-     * elements, cela evite un tri sur le thread principal a chaque emission.
-     */
     @Query(
         """
         SELECT albums.*, (favorites.photo_id IS NOT NULL) AS is_favorite
@@ -38,10 +34,7 @@ interface AlbumsDao {
     @Query("SELECT COUNT(*) FROM albums")
     suspend fun count(): Int
 
-    /**
-     * `UPSERT` et non `DELETE` + `INSERT` : la liste affichee n'est jamais vidée pendant une
-     * synchronisation, donc pas de clignotement de l'UI.
-     */
+
     @Upsert
     suspend fun upsertAll(albums: List<AlbumEntity>)
 }

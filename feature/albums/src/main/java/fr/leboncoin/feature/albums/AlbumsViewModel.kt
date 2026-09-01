@@ -33,7 +33,7 @@ class AlbumsViewModel @Inject constructor(
 
     /**
      * Recherche et filtre transitent par le [SavedStateHandle] : ils survivent a une rotation
-     * *et* a une mort du processus, sans avoir a bloquer les changements de configuration.
+     et au process death , sans avoir a bloquer les changements de configuration
      */
     private val query: StateFlow<String> = savedStateHandle.getStateFlow(KEY_QUERY, "")
     private val filterName: StateFlow<String> =
@@ -76,7 +76,7 @@ class AlbumsViewModel @Inject constructor(
     }
 
     fun refresh() {
-        // Garde-fou : pas de synchronisations concurrentes (double tap, retour d'ecran...).
+        // pas de synchronisations concurrentes (refreh, retour d'ecran...).
         if (syncState.value.isSyncing) return
         syncState.update { it.copy(isSyncing = true, error = null) }
         viewModelScope.launch {
@@ -105,7 +105,7 @@ class AlbumsViewModel @Inject constructor(
         }
     }
 
-    /** L'UI signale que l'erreur a ete presentee (snackbar) : on evite de la rejouer. */
+    /** L'UI signale que l'erreur a ete presentee (snackbar)  */
     fun onErrorShown() {
         syncState.update { it.copy(error = null) }
     }

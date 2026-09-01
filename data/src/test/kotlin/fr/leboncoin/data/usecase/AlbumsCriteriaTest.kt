@@ -9,7 +9,6 @@ import org.junit.Test
 
 /**
  * La logique de filtrage/regroupement est une fonction pure : elle se teste sans coroutine,
- * sans Android et sans base de donnees. C'est l'interet de l'avoir sortie du ViewModel.
  */
 class AlbumsCriteriaTest {
 
@@ -24,7 +23,7 @@ class AlbumsCriteriaTest {
         val groups = albums.applyCriteria(AlbumsCriteria())
 
         assertEquals(listOf(1, 2), groups.map { it.albumId })
-        assertEquals(2, groups.first().size)
+        assertEquals(2, groups.first().photos.size)
     }
 
     @Test

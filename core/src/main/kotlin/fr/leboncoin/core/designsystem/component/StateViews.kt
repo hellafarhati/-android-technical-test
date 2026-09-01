@@ -17,8 +17,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import fr.leboncoin.core.R
+import com.adevinta.spark.components.progress.CircularProgressIndicator
 
-/** Etat de chargement plein ecran (uniquement quand aucune donnee n'est disponible). */
+/** Etat de chargement full screen (uniquement quand aucune donnee n'est disponible). */
 @Composable
 fun LoadingState(modifier: Modifier = Modifier) {
     Box(
@@ -31,7 +32,7 @@ fun LoadingState(modifier: Modifier = Modifier) {
     }
 }
 
-/** Etat d'erreur bloquant, avec action de reessai : jamais d'ecran vide sans explication. */
+/** Etat d'erreur avec possibilté de reessai pour éviter un écran vide sans explication*/
 @Composable
 fun ErrorState(
     message: String,

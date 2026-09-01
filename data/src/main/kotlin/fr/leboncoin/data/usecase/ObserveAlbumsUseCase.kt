@@ -12,11 +12,10 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 /**
- * Combine la source de verite locale et les criteres utilisateur pour produire la liste
+ * Combine la source de verite locale et les criteres introduites par l' utilisateur pour produire la liste
  * regroupee par album.
  *
- * Le jeu de donnees fait 5 000 elements : le filtrage et le regroupement sont donc
- * executes sur le dispatcher [DispatcherProvider.default] et pas sur le thread principal.
+ traitement  (heavy work)  executé donc sur le dispatcher DispatcherProvider.default et pas sur le thread principal
  */
 class ObserveAlbumsUseCase @Inject constructor(
     private val repository: AlbumsRepository,

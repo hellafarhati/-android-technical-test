@@ -21,12 +21,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Implementation "single source of truth" :
+ * "source of truth" :
  *
- * - l'UI n'observe que la base locale, donc l'application fonctionne hors ligne et apres
- *   redemarrage ;
+ * - l'UI n'observe que la base locale, donc l'application fonctionne hors ligne et apres redemarrage ;
  * - le reseau est un simple mecanisme d'alimentation du cache ;
- * - un echec de synchronisation n'efface jamais les donnees deja disponibles.
  */
 @Singleton
 internal class AlbumsRepositoryImpl @Inject constructor(
@@ -50,7 +48,7 @@ internal class AlbumsRepositoryImpl @Inject constructor(
         try {
             val remoteAlbums = remoteDataSource.fetchAlbums()
             if (remoteAlbums.isEmpty()) {
-                // Reponse valide mais vide : on conserve le cache existant.
+                // liste vide donc pas de mise a jour
                 RefreshResult.Failure(DataError.EMPTY)
             } else {
                 albumsDao.upsertAll(remoteAlbums.map { it.toEntity() })

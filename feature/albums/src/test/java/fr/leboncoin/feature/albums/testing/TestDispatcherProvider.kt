@@ -6,7 +6,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 
-/** Fait pointer tous les dispatchers vers un unique [TestDispatcher] controle par le test. */
+/** Fait pointer tous les dispatchers vers un unique [TestDispatcher] controle par le test */
 @OptIn(ExperimentalCoroutinesApi::class)
 class TestDispatcherProvider(
     private val dispatcher: TestDispatcher = UnconfinedTestDispatcher(),

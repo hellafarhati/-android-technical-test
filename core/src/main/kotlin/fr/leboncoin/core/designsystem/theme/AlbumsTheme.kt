@@ -6,11 +6,7 @@ import com.adevinta.spark.SparkTheme
 
 /**
  * Point d'entree unique du theme.
- *
- * On passe par le design system maison (Spark) plutot que par un theme Material3 ad hoc :
- * couleurs, typographies et composants restent alignes avec le reste des applications
- * leboncoin. Encapsuler l'appel ici permettrait aussi de changer de DS sans toucher aux features.
- */
+*/
 @Composable
 fun AlbumsTheme(content: @Composable () -> Unit) {
     SparkTheme(content = content)

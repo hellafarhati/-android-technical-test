@@ -36,8 +36,7 @@ internal object NetworkModule {
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .apply {
-            // Le log BODY serialise 5 000 elements : reserve au build de debug.
-            if (config.isLoggingEnabled) {
+             if (config.isLoggingEnabled) {
                 addInterceptor(
                     HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY },
                 )

@@ -26,8 +26,7 @@ kotlin {
     compilerOptions { jvmTarget.set(JvmTarget.JVM_17) }
 }
 
-// Les schemas sont versionnes : ils servent de reference pour ecrire et tester les migrations.
-ksp {
+ ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
 

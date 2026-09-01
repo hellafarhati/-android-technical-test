@@ -42,10 +42,6 @@ import fr.leboncoin.data.usecase.AlbumsFilter
 import fr.leboncoin.core.model.DataError
 import fr.leboncoin.core.R as DesignSystemR
 
-/**
- * Point d'entree "stateful" : il ne fait que brancher le ViewModel sur un ecran sans etat.
- * Ce decoupage rend [AlbumsScreen] previsualisable et testable sans Hilt ni base de donnees.
- */
 @Composable
 fun AlbumsRoute(
     onAlbumClick: (Int) -> Unit,
@@ -80,9 +76,8 @@ internal fun AlbumsScreen(
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val listState = rememberLazyListState()
+    //on affiche une snackbar en cas d'erreur et on continue a servir le cache.
 
-    // Une erreur alors que du contenu est deja affiche ne doit pas masquer la liste :
-    // on previent via un snackbar et on continue a servir le cache.
     val errorMessage = uiState.error?.let { stringResource(it.messageRes()) }
     LaunchedEffect(errorMessage) {
         if (errorMessage != null && uiState.hasContent) {

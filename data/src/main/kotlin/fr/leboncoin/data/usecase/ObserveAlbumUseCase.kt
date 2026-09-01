@@ -5,7 +5,7 @@ import fr.leboncoin.core.model.Album
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-/** Observe une photo pour l'ecran de detail (le favori se met a jour en direct). */
+/** Observe une photo pour l'ecran de detail  */
 class ObserveAlbumUseCase @Inject constructor(
     private val repository: AlbumsRepository,
 ) {

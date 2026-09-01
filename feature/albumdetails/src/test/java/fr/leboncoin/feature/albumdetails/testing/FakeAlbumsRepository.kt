@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
 /**
- * Faux repository controle par le test.
+ * Faux repository par le test.
  *
  * Choix assume : des fakes plutot qu'une librairie de mocks. Ils sont typesafe, refactorables,
  * et ils forcent a garder les interfaces petites.

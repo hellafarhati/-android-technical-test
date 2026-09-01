@@ -12,8 +12,7 @@ import androidx.compose.ui.semantics.stateDescription
 import fr.leboncoin.core.R
 
 /**
- * Bouton favori accessible : l'etat est expose aux lecteurs d'ecran via `stateDescription`,
- * et la zone tactile respecte les 48dp par defaut de `IconButton`.
+ * Bouton favori accessible : l'etat est expose aux lecteurs d'ecran via `stateDescription`
  */
 @Composable
 fun FavoriteButton(

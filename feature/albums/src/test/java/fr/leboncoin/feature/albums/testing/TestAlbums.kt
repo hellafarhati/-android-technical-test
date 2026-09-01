@@ -2,8 +2,7 @@ package fr.leboncoin.feature.albums.testing
 
 import fr.leboncoin.core.model.Album
 
-/** Jeu de donnees partage par les tests de ce module. */
-object TestAlbums {
+ object TestAlbums {
 
     fun album(
         id: Int,

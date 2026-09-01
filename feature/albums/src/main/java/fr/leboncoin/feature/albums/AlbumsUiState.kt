@@ -7,11 +7,8 @@ import fr.leboncoin.core.model.AlbumGroup
 import fr.leboncoin.core.model.DataError
 
 /**
- * Modeles dedies a l'UI.
- *
- * Ils sont annotes `@Immutable` : le compilateur Compose peut alors sauter les recompositions
- * inutiles. Les modeles du domaine vivent dans un module Kotlin pur (sans compilateur Compose),
- * ils seraient consideres comme instables s'ils etaient utilises directement dans les composables.
+ * Modeles dedies a l'UI
+ @Immutable so le compilateur Compose peut alors sauter les recompositions inutiles.
  */
 @Immutable
 data class AlbumUi(
@@ -30,17 +27,17 @@ data class AlbumGroupUi(
 
 @Immutable
 data class AlbumsUiState(
-    /** Premier chargement, aucune donnee encore disponible. */
+    /** Premier chargement, aucune donnee encore disponible */
     val isLoading: Boolean = true,
-    /** Synchronisation en arriere-plan alors que du contenu est deja affiche. */
+    /** Synchronisation en arriere-plan alors que du contenu est deja affiche */
     val isRefreshing: Boolean = false,
     val groups: List<AlbumGroupUi> = emptyList(),
     val query: String = "",
     val filter: AlbumsFilter = AlbumsFilter.ALL,
-    /** Erreur de la derniere synchronisation, non consommee par l'UI. */
+    /** Erreur de la synchronisation */
     val error: DataError? = null,
 ) {
-    /** Vrai si l'utilisateur a restreint la liste (recherche ou favoris). */
+    /** Vrai si l'utilisateur a restreint la liste (recherche ou favoris) */
     val isFiltered: Boolean get() = query.isNotBlank() || filter == AlbumsFilter.FAVORITES
 
     val hasContent: Boolean get() = groups.isNotEmpty()

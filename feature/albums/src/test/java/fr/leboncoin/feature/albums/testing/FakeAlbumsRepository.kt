@@ -7,22 +7,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
-/**
- * Faux repository controle par le test.
- *
- * Choix assume : des fakes plutot qu'une librairie de mocks. Ils sont typesafe, refactorables,
- * et ils forcent a garder les interfaces petites.
- */
+
 class FakeAlbumsRepository(
     initialAlbums: List<Album> = emptyList(),
 ) : AlbumsRepository {
 
     private val albums = MutableStateFlow(initialAlbums)
 
-    /** Resultat renvoye par le prochain appel a [refresh]. */
-    var refreshResult: RefreshResult = RefreshResult.Success
+     var refreshResult: RefreshResult = RefreshResult.Success
 
-    /** Nombre d'appels a [refresh] : permet de verifier qu'on ne rafraichit pas en boucle. */
+    /** Nombre d'appels a [refresh] : permet de verifier qu'on ne rafraichit pas en boucle */
     var refreshCount: Int = 0
         private set
 
@@ -42,7 +36,7 @@ class FakeAlbumsRepository(
         }
     }
 
-    /** Simule une mise a jour de la base locale (ex. fin de synchronisation). */
+    /** Simule une mise a jour de la base locale avec les nouveaux albums */
     fun emit(newAlbums: List<Album>) {
         albums.value = newAlbums
     }

@@ -19,9 +19,6 @@ internal class DefaultAlbumsRemoteDataSource @Inject constructor(
 
     override suspend fun fetchAlbums(): List<AlbumDto> = try {
         apiService.getAlbums()
-    } catch (cancellation: CancellationException) {
-        // Une annulation de coroutine n'est pas une erreur applicative : on la relaie telle quelle.
-        throw cancellation
     } catch (http: HttpException) {
         throw RemoteException.Server(http.code(), http)
     } catch (io: IOException) {

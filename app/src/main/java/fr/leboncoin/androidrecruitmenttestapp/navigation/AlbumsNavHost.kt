@@ -12,8 +12,7 @@ import fr.leboncoin.feature.albums.navigation.albumsScreen
 /**
  * Graphe de navigation.
  *
- * Le module `:app` est le seul a connaitre les deux features : elles restent independantes
- * l'une de l'autre et peuvent etre compilees et testees separement.
+ la navigation d'une page a l'aure est assurée par ce graphe
  */
 @Composable
 fun AlbumsNavHost(
