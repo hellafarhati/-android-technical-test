@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_title">Détail de la photo</string>
+    <string name="details_album">Album %1$d</string>
+    <string name="details_photo">Photo %1$d</string>
+    <string name="details_not_found">Cette photo n\'est plus disponible.</string>
+</resources>
