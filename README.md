@@ -1,95 +1,77 @@
-# AndroidRecruitmentTestApp
-## ÉNONCÉ
+# Albums — test technique Android leboncoin
 
-Vous devez améliorer une application native Android affichant la liste des items suivant (titres d'albums) : https://static.leboncoin.fr/img/shared/technical-test.json
+Application Android affichant les ~5 000 photos de
+`https://static.leboncoin.fr/img/shared/technical-test.json`, regroupées par album,
+avec recherche, favoris persistés, écran de détail et fonctionnement hors ligne.
 
-### Prérequis 
+Le projet fourni au départ contenait plusieurs pièges volontaires (fuite mémoire, perte
+d'état à la rotation, logs activés en release, écran de détail sans données…). Ils sont
+tous listés, expliqués et corrigés dans [`docs/BUGS-ET-CORRECTIFS.md`](docs/BUGS-ET-CORRECTIFS.md).
 
-* Le projet est à réaliser sur la plateforme Android (API minimum 24) avec la dernière version stable d'Android Studio
-* Vous devez implémenter un système de persistance des données afin que les données puissent être disponibles offline, même après redémarrage de l'application
-* Vous êtes invité à modifier tout ce qui vous semble pertinent pour améliorer le code existant
-* Il y a des pièges et anomalies à débusquer et à corriger. Arriverez-vous à tous les corriger? 
-* Vous devez intégrer une fonctionnalité de mise en favoris qui persiste en local
-* Vous devez implementer un écran de détail
-* Vous êtes libre d'utiliser le langage et les librairies que vous voulez
-* Votre code doit être versionné sur un dépôt Git librement consultable. Vous êtes libre de créer plusieurs branches pour votre développement, mais nous ne relirons que la branche configurée par défaut, veillez à ce que celle-ci soit à jour
-* Un document récapitulant les choix d'architecture, des patterns et des librairies appliquées
+## Sommaire de la documentation
 
-### Nous observerons particulièrement 
+| Document | Contenu |
+| --- | --- |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Découpage en modules, couches, flux de données, justification de chaque librairie |
+| [`docs/BUGS-ET-CORRECTIFS.md`](docs/BUGS-ET-CORRECTIFS.md) | Les 20 problèmes trouvés dans le projet initial, avant / après |
+| [`docs/TESTS.md`](docs/TESTS.md) | Stratégie de test, ce qui est couvert et ce qui ne l'est pas |
+| [`docs/EVOLUTIONS.md`](docs/EVOLUTIONS.md) | Planification des évolutions (bonus de l'énoncé) |
 
-* L'architecture 
-* Votre capacité à débusquer et corriger les bugs
-* L'aspect multi-modulaire
-* Les patterns appliqués
-* Les choix de librairies
-* Les performances de l'application
-* Les tests
-* L'utilisation d'un framework d'injection de dépendance
-* La justification des choix effectués
+## Démarrer
 
-### Bonus
+Prérequis : **JDK 17** et Android Studio récent (AGP 8.10, Gradle 8.11.1, Kotlin 2.2).
 
-* Votre capacité à faire évoluer l'existant et à planifier les évolutions.
-  On souhaite vous faire réfléchir à la planification des évolutions de l'application, et le documenter. 
+```bash
+./gradlew assembleDebug      # construire l'APK de debug
+./gradlew installDebug       # installer sur un appareil connecté
+./gradlew test               # tous les tests unitaires
+./gradlew lint               # analyse statique
+```
 
-### Attendu
+À la première ouverture dans Android Studio, laisser le *Gradle sync* télécharger les
+dépendances (Hilt, Room et KSP génèrent du code avant la première compilation).
 
-On attend que vous développiez cette app comme si c'était un projet professionnel. 
-Nous vous recommandons de prendre entre (~ 4 à 6 heures) pour le réaliser.
-Si plus de temps est nécessaire, merci de le demander.
+## Fonctionnalités
 
-### Nous rejetterons le test si un des éléments suivants n'est pas présent:
+- Liste des photos **groupées par album**, avec en-têtes collants (`stickyHeader`).
+- **Recherche** par titre (debounce 250 ms) et filtre **Favoris**.
+- **Favoris persistés localement**, conservés après une resynchronisation réseau.
+- **Écran de détail** recevant réellement l'identifiant de la photo (navigation type-safe).
+- **Hors ligne** : la base Room est la source de vérité, l'application affiche son cache
+  même sans réseau et après redémarrage.
+- **États explicites** : chargement, erreur avec bouton *Réessayer*, vide, contenu.
+  Une erreur réseau alors que du cache existe se limite à un *snackbar* non bloquant.
+- Rotation, mode sombre, RTL, `contentDescription` et `stateDescription` pour les
+  lecteurs d'écran, textes en français et en anglais.
 
-* Tests unitaires
-* L'application crash systématiquement
-* La gestion des changements de configuration
-* Aucune justification des choix effectués
+## Stack
 
+| Domaine | Choix | Pourquoi |
+| --- | --- | --- |
+| UI | Jetpack Compose + Spark (design system leboncoin) | Composants maison, cohérence visuelle |
+| Présentation | MVVM, `StateFlow`, `SavedStateHandle` | État unique, survit rotation et process death |
+| DI | Hilt (KSP) | Standard Android, portées gérées, testable |
+| Réseau | Retrofit 3 + OkHttp + kotlinx.serialization | Contrat typé, parsing sans réflexion |
+| Persistance | Room | Requêtes vérifiées à la compilation, `Flow` réactif |
+| Images | Coil 3 | Compose-first, partage du client OkHttp, cache disque |
+| Navigation | Navigation Compose type-safe | Arguments vérifiés à la compilation |
+| Tests | JUnit4, coroutines-test, Turbine, *fakes* écrits à la main | Déterministe, sans mocks fragiles |
 
----
+## Architecture en un coup d'œil
 
-## ASSIGNMENT
+```
+:app  ──────────────►  :feature:albums   ─┐
+      └─────────────►  :feature:albumdetails
+                              │
+                              ▼
+                          :data   (réseau, Room, repository, use cases)
+                              │
+                              ▼
+                          :core   (modèles, dispatchers, design system)
+```
 
-You must improve a native Android application displaying the following items (album titles): https://static.leboncoin.fr/img/shared/technical-test.json
-
-### Prerequisites
-
-* The project must be developed on the Android platform (minimum API 24) with the latest stable version of Android Studio
-* You must implement a data persistence system so that data can be available offline, even after restarting the application
-* You are invited to modify anything you deem relevant to improve the existing code
-* There are traps and bugs to uncover and fix. Will you be able to fix them all?
-* You must integrate a favorites feature that persists locally
-* You must implement a detail screen
-* You are free to use the language and libraries you want
-* Your code must be versioned on a freely accessible Git repository. You are free to create multiple branches for your development, but we will only review the default configured branch, make sure it is up to date
-* A document summarizing the architecture choices, patterns and libraries applied
-
-### We will particularly observe
-
-* The architecture
-* Your ability to find and fix bugs
-* The multi-modular aspect
-* The patterns applied
-* Library choices
-* Application performance
-* Tests
-* The use of a dependency injection framework
-* Justification of choices made
-
-### Bonus
-
-* Your ability to evolve the existing codebase and plan for future developments.
-  We want you to think about planning the application's evolutions, and document it.
-
-### Expected
-
-We expect you to develop this app as if it were a professional project.
-We recommend taking between (~4 to 6 hours) to complete it.
-If more time is needed, please ask.
-
-### We will reject the test if any of the following elements is not present:
-
-* Unit tests
-* The application crashes systematically
-* Configuration changes management
-* No justification for choices made
+5 modules Gradle : `:core` regroupe tout ce qui est partagé et stable (modèles, dispatchers,
+composants Compose), `:data` toute la logique d'accès aux données (réseau, Room,
+repository, use cases), `:feature:albums`/`:feature:albumdetails` sont les deux écrans,
+`:app` ne fait que le câblage (Hilt, navigation). Détails, raisons du découpage et
+alternative envisagée dans [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
