@@ -28,9 +28,6 @@ Prérequis : **JDK 17** et Android Studio récent (AGP 8.10, Gradle 8.11.1, Kotl
 ./gradlew lint               # analyse statique
 ```
 
-À la première ouverture dans Android Studio, laisser le *Gradle sync* télécharger les
-dépendances (Hilt, Room et KSP génèrent du code avant la première compilation).
-
 ## Fonctionnalités
 
 - Liste des photos **groupées par album**, avec en-têtes collants (`stickyHeader`).
