@@ -4,10 +4,6 @@ Application Android affichant les ~5 000 photos de
 `https://static.leboncoin.fr/img/shared/technical-test.json`, regroupées par album,
 avec recherche, favoris persistés, écran de détail et fonctionnement hors ligne.
 
-Le projet fourni au départ contenait plusieurs pièges volontaires (fuite mémoire, perte
-d'état à la rotation, logs activés en release, écran de détail sans données…). Ils sont
-tous listés, expliqués et corrigés dans [`docs/BUGS-ET-CORRECTIFS.md`](docs/BUGS-ET-CORRECTIFS.md).
-
 ## Sommaire de la documentation
 
 | Document | Contenu |
