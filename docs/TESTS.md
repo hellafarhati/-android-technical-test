@@ -11,6 +11,3 @@
 - `:data` (réseau) — parsing du JSON (clés inconnues, valeurs nulles)
 - `:feature:albums` — états UI, recherche, favoris, rotation et process death
 - `:feature:albumdetails` — navigation, photo absente, favori
-
-Pas testé, faute de temps : DAO Room réel, composables, Retrofit réel, navigation de bout
-en bout — nécessitent un émulateur ou Robolectric.
