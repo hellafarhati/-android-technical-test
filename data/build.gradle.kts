@@ -1,51 +1,55 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "fr.leboncoin.data"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+}
 
-    buildFeatures {
-        buildConfig = true
-    }
+kotlin {
+    compilerOptions { jvmTarget.set(JvmTarget.JVM_17) }
+}
 
-    dependencies {
-        implementation(libs.retrofit.core)
-        implementation(libs.retrofit.kotlin.serialization)
-        implementation(libs.okhttp.logging)
+// Les schemas sont versionnes : ils servent de reference pour ecrire et tester les migrations.
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
 
-        implementation(libs.kotlin.serialization.json)
+dependencies {
+    implementation(project(":core"))
 
-        testImplementation(libs.junit)
-        androidTestImplementation(libs.androidx.junit) // Useless dependency
-        androidTestImplementation(libs.androidx.espresso.core) // Useless dependency
-    }
+    api(libs.retrofit.core)
+    api(libs.okhttp.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.okhttp.logging)
+    implementation(libs.kotlin.serialization.json)
+
+    api(libs.room.runtime)
+    api(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    api(libs.javax.inject)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.serialization.json)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
 }
